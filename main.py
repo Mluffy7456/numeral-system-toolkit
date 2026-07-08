@@ -3,6 +3,7 @@ from converter import converter_menu
 from calculator import calculator_menu
 from config import APP_NAME, VERSION
 from utils import clear_screen, header, pause, logo
+from history import show_history, clear_history
 
 
 def main():
@@ -35,11 +36,11 @@ def main():
             pause()
 
         elif choice == "3":
-            print("\nHistory is empty.")
+            show_history()
             pause()
 
         elif choice == "4":
-            print("\nHistory module is not implemented yet.")
+            clear_history()
             pause()
 
         elif choice == "5":

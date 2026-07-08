@@ -1,4 +1,5 @@
 from utils import print_result
+from history import add_record
 
 
 DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -65,6 +66,12 @@ def converter_menu():
             number,
             from_base,
             to_base
+        )
+        
+        add_record(
+            "Converter",
+            f"{number} (base {from_base}) → base {to_base}",
+            result
         )
 
         print_result(

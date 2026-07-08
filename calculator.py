@@ -1,5 +1,6 @@
 from converter import to_decimal, from_decimal
 from utils import print_result
+from history import add_record
 
 OPERATIONS = {
     "+": lambda a, b: a + b,
@@ -39,6 +40,12 @@ def calculator_menu():
             return
 
         result = OPERATIONS[operation](decimal1, decimal2)
+        
+        add_record(
+            "Calculator",
+            f"{number1} {operation} {number2} (base {base})",
+            from_decimal(result, base)
+        )
 
         print_result(
             "Calculation Result",
