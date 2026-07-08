@@ -2,6 +2,7 @@ from utils import clear_screen
 from converter import converter_menu
 from calculator import calculator_menu
 from config import APP_NAME, VERSION
+from utils import clear_screen, header, pause, logo
 
 
 def main():
@@ -10,6 +11,9 @@ def main():
 
         clear_screen()
 
+        header()
+        logo()
+        
         print("=" * 45)
         print(f"{APP_NAME} v{VERSION}".center(45))
         print("=" * 45)
@@ -24,19 +28,19 @@ def main():
 
         if choice == "1":
             converter_menu()
-            input("\nPress Enter...")
+            pause()
 
         elif choice == "2":
             calculator_menu()
-            input("\nPress Enter...")
+            pause()
 
         elif choice == "3":
-            print("\nHistory module is not implemented yet.")
-            input("\nPress Enter...")
+            print("\nHistory is empty.")
+            pause()
 
         elif choice == "4":
             print("\nHistory module is not implemented yet.")
-            input("\nPress Enter...")
+            pause()
 
         elif choice == "5":
             print("\nGoodbye!")
@@ -44,7 +48,7 @@ def main():
 
         else:
             print("\nInvalid choice.")
-            input("\nPress Enter...")
+            pause()
 
 
 if __name__ == "__main__":

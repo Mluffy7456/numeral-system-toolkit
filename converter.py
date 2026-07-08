@@ -1,3 +1,6 @@
+from utils import print_result
+
+
 DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def to_decimal(number: str, base: int) -> int:
@@ -64,7 +67,20 @@ def converter_menu():
             to_base
         )
 
-        print(f"\nResult: {result}")
+        print_result(
+           "Conversion Result",
+           f"""
+        Number: {number}
+
+        From base: {from_base}
+
+        To base: {to_base}
+
+        Answer:
+
+        {result}
+        """
+        )
 
     except ValueError:
 

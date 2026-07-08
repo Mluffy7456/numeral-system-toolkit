@@ -1,5 +1,5 @@
 from converter import to_decimal, from_decimal
-
+from utils import print_result
 
 OPERATIONS = {
     "+": lambda a, b: a + b,
@@ -40,9 +40,26 @@ def calculator_menu():
 
         result = OPERATIONS[operation](decimal1, decimal2)
 
-        print("\n========== Result ==========")
-        print(f"In base {base}: {from_decimal(result, base)}")
-        print(f"In decimal: {result}")
+        print_result(
+            "Calculation Result",
+            f"""
+        Expression:
+
+        {number1} {operation} {number2}
+
+        Base:
+
+        {base}
+
+        Answer:
+
+        {from_decimal(result, base)}
+
+        Decimal:
+
+        {result}
+        """
+        )
 
     except ValueError:
         print("\nInvalid input.")
