@@ -1,6 +1,7 @@
 from utils import print_result
 from history import add_converter_record
 from validator import (validate_base, validate_number, validate_number_for_base)
+from representations import show_representations
 
 
 DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -87,6 +88,10 @@ def converter_menu():
 
         {result}
         """
+        )
+        
+        show_representations(
+            to_decimal(result, to_base)
         )
 
     except ValueError:

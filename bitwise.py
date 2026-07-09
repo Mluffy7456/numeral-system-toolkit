@@ -2,6 +2,7 @@ from converter import to_decimal, from_decimal
 from validator import validate_base, validate_number_for_base
 from utils import print_result
 from history import add_bitwise_record
+from representations import show_representations
 
 
 BIT_WIDTHS = {
@@ -130,6 +131,11 @@ Decimal:
 Hexadecimal:
 {from_decimal(result, 16)}
 """
+        )
+        
+        show_representations(
+            result,
+            bit_width
         )
 
     except ValueError as e:

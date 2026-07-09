@@ -2,6 +2,7 @@ from converter import to_decimal, from_decimal
 from utils import print_result
 from history import add_calculator_record
 from validator import validate_base, validate_number_for_base
+from representations import show_representations
 
 
 OPERATIONS = {
@@ -75,6 +76,8 @@ def calculator_menu():
         {result}
         """
         )
+        
+        show_representations(result)
 
     except ValueError:
         print("\nInvalid input.")
