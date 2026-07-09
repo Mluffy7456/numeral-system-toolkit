@@ -111,6 +111,17 @@ def show_history():
             )
 
             print(f"Result : {record['result']}")
+            
+        elif record["type"] == "bitwise":
+
+            print(
+                f"{record['first_number']} "
+                f"{record['operation']} "
+                f"{record['second_number']}"
+            )
+
+            print(f"Base : {record['base']}")
+            print(f"Result : {record['result']}")
 
         else:
 
@@ -126,6 +137,33 @@ def show_history():
 
         print("-" * 50)
 
+def add_bitwise_record(operation,
+                       first_number,
+                       second_number,
+                       base,
+                       result):
+
+    history = load_history()
+
+    history.append({
+
+        "type": "bitwise",
+
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+
+        "base": base,
+
+        "operation": operation,
+
+        "first_number": first_number,
+
+        "second_number": second_number,
+
+        "result": result
+
+    })
+
+    save_history(history)
 
 def clear_history():
 

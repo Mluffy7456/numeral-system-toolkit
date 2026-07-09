@@ -4,6 +4,7 @@ from calculator import calculator_menu
 from config import APP_NAME, VERSION
 from utils import clear_screen, header, pause, logo
 from history import show_history, clear_history
+from bitwise import bitwise_menu
 
 
 def main():
@@ -12,7 +13,6 @@ def main():
 
         clear_screen()
 
-        header()
         logo()
         
         print("=" * 45)
@@ -21,9 +21,10 @@ def main():
 
         print("1. Number Converter")
         print("2. Calculator")
-        print("3. View History")
-        print("4. Clear History")
-        print("5. Exit")
+        print("3. Bitwise Operations")
+        print("4. View History")
+        print("5. Clear History")
+        print("6. Exit")
 
         choice = input("\nChoose: ")
 
@@ -34,16 +35,20 @@ def main():
         elif choice == "2":
             calculator_menu()
             pause()
-
+            
         elif choice == "3":
+            bitwise_menu()
+            pause()
+    
+        elif choice == "4":
             show_history()
             pause()
 
-        elif choice == "4":
+        elif choice == "5":
             clear_history()
             pause()
 
-        elif choice == "5":
+        elif choice == "6":
             print("\nGoodbye!")
             break
 

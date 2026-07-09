@@ -20,6 +20,12 @@ def validate_number_for_base(number: str, base: int):
 
     allowed = DIGITS[:base]
 
+    if number.startswith("-"):
+        number = number[1:]
+
+    if not number:
+        raise ValueError("Number cannot consist only of '-'.")
+
     for symbol in number.upper():
 
         if symbol not in allowed:

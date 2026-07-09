@@ -15,19 +15,24 @@ def to_decimal(number: str, base: int) -> int:
 
 
 def from_decimal(number: int, base: int) -> str:
-    """
-    Перевод десятичного числа
-    в указанную систему счисления.
-    """
 
     if number == 0:
         return "0"
 
+    negative = number < 0
+
+    number = abs(number)
+
     result = ""
 
     while number > 0:
+
         number, remainder = divmod(number, base)
+
         result = DIGITS[remainder] + result
+
+    if negative:
+        result = "-" + result
 
     return result
 
