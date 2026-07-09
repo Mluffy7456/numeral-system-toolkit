@@ -5,7 +5,7 @@ from rich_utils import console, title, success, error
 from history import add_converter_record
 from validator import validate_base, validate_number_for_base
 from representations import show_representations
-
+from number_utils import from_decimal
 
 DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 

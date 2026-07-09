@@ -17,5 +17,4 @@ def logo():
      ╚═╝  ╚═══╝╚══════╝   ╚═╝
 
  Numeral System Toolkit - by Mluffy
-
 """)

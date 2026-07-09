@@ -1,6 +1,6 @@
 from rich.prompt import Prompt
-
-from converter import to_decimal, from_decimal
+from number_utils import from_decimal
+from converter import to_decimal
 from validator import validate_base, validate_number_for_base
 from history import add_bitwise_record
 from representations import show_representations

@@ -1,7 +1,7 @@
 from rich.table import Table
 from rich import box
 
-from converter import from_decimal
+from number_utils import from_decimal
 from rich_utils import console
 
 
