@@ -11,6 +11,7 @@ def load_history():
         return []
 
     try:
+
         with open(HISTORY_FILE, "r", encoding="utf-8") as file:
             return json.load(file)
 
@@ -21,24 +22,65 @@ def load_history():
 def save_history(history):
 
     with open(HISTORY_FILE, "w", encoding="utf-8") as file:
+
         json.dump(
             history,
             file,
-            ensure_ascii=False,
-            indent=4
+            indent=4,
+            ensure_ascii=False
         )
 
 
-def add_record(record_type, expression, result):
+def add_converter_record(number, from_base, to_base, result):
 
     history = load_history()
 
     history.append({
-        "date": datetime.now().strftime("%d.%m.%Y"),
-        "time": datetime.now().strftime("%H:%M:%S"),
-        "type": record_type,
-        "expression": expression,
+
+        "type": "converter",
+
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+
+        "number": number,
+
+        "from_base": from_base,
+
+        "to_base": to_base,
+
         "result": result
+
+    })
+
+    save_history(history)
+
+
+def add_calculator_record(first_number,
+                          second_number,
+                          operation,
+                          base,
+                          result,
+                          decimal_result):
+
+    history = load_history()
+
+    history.append({
+
+        "type": "calculator",
+
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+
+        "base": base,
+
+        "first_number": first_number,
+
+        "second_number": second_number,
+
+        "operation": operation,
+
+        "result": result,
+
+        "decimal_result": decimal_result
+
     })
 
     save_history(history)
@@ -53,14 +95,35 @@ def show_history():
         print("\nHistory is empty.")
         return
 
-    print("\n========== History ==========\n")
+    print("\n========== HISTORY ==========\n")
 
     for record in history:
 
-        print(f"[{record['date']} {record['time']}]")
-        print(f"Type: {record['type']}")
-        print(f"Expression: {record['expression']}")
-        print(f"Result: {record['result']}")
+        print(f"Time : {record['timestamp']}")
+        print(f"Type : {record['type']}")
+
+        if record["type"] == "converter":
+
+            print(
+                f"{record['number']} "
+                f"(base {record['from_base']}) "
+                f"→ base {record['to_base']}"
+            )
+
+            print(f"Result : {record['result']}")
+
+        else:
+
+            print(
+                f"{record['first_number']} "
+                f"{record['operation']} "
+                f"{record['second_number']}"
+            )
+
+            print(f"Base : {record['base']}")
+            print(f"Result : {record['result']}")
+            print(f"Decimal : {record['decimal_result']}")
+
         print("-" * 50)
 
 
@@ -68,4 +131,4 @@ def clear_history():
 
     save_history([])
 
-    print("\nHistory cleared successfully.")
+    print("\nHistory cleared.")

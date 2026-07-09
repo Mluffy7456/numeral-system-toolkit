@@ -1,6 +1,8 @@
 from converter import to_decimal, from_decimal
 from utils import print_result
-from history import add_record
+from history import add_calculator_record
+from validator import validate_base, validate_number_for_base
+
 
 OPERATIONS = {
     "+": lambda a, b: a + b,
@@ -19,12 +21,13 @@ def calculator_menu():
 
         base = int(input("Base (2-36): "))
 
-        if not 2 <= base <= 36:
-            print("\nBase must be between 2 and 36.")
-            return
+        validate_base(base)
 
         number1 = input("First number: ").strip().upper()
         number2 = input("Second number: ").strip().upper()
+        
+        validate_number_for_base(number1, base)
+        validate_number_for_base(number2, base)
 
         operation = input("Operation (+ - * / %): ").strip()
 
@@ -41,10 +44,15 @@ def calculator_menu():
 
         result = OPERATIONS[operation](decimal1, decimal2)
         
-        add_record(
-            "Calculator",
-            f"{number1} {operation} {number2} (base {base})",
-            from_decimal(result, base)
+        formatted_result = from_decimal(result, base)
+        
+        add_calculator_record(
+        number1,
+        number2,
+        operation,
+        base,
+        formatted_result,
+        result
         )
 
         print_result(
@@ -60,7 +68,7 @@ def calculator_menu():
 
         Answer:
 
-        {from_decimal(result, base)}
+        {formatted_result}
 
         Decimal:
 

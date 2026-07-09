@@ -1,5 +1,6 @@
 from utils import print_result
-from history import add_record
+from history import add_converter_record
+from validator import (validate_base, validate_number, validate_number_for_base)
 
 
 DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -45,22 +46,15 @@ def converter_menu():
     try:
 
         number = input("Number: ").upper()
-        
-        if not number:
-           print("\nNumber cannot be empty.")
-           return
 
         from_base = int(input("From base (2-36): "))
 
         to_base = int(input("To base (2-36): "))
         
-        if not 2 <= from_base <= 36:
-           print("\nSource base must be between 2 and 36.")
-           return
+        validate_base(from_base)
+        validate_base(to_base)
 
-        if not 2 <= to_base <= 36:
-           print("\nTarget base must be between 2 and 36.")
-           return
+        validate_number_for_base(number, from_base)
 
         result = convert_number(
             number,
@@ -68,10 +62,11 @@ def converter_menu():
             to_base
         )
         
-        add_record(
-            "Converter",
-            f"{number} (base {from_base}) → base {to_base}",
-            result
+        add_converter_record(
+        number,
+        from_base,
+        to_base,
+        result
         )
 
         print_result(

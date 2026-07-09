@@ -15,7 +15,7 @@ def logo():
 ██║ ╚████║███████║   ██║
 ╚═╝  ╚═══╝╚══════╝   ╚═╝
 
-    Numeral System Toolkit
+    Numeral System Toolkit - by Mluffy
 """)
     
 def header():
