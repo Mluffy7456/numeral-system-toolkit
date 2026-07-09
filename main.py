@@ -1,10 +1,12 @@
-from utils import clear_screen
 from converter import converter_menu
 from calculator import calculator_menu
-from config import APP_NAME, VERSION
-from utils import clear_screen, header, pause, logo
-from history import show_history, clear_history
 from bitwise import bitwise_menu
+from history import show_history, clear_history
+
+from config import APP_NAME, VERSION
+
+from utils import clear_screen, logo
+from rich_utils import console, title, pause, error, success
 
 
 def main():
@@ -14,19 +16,17 @@ def main():
         clear_screen()
 
         logo()
-        
-        print("=" * 45)
-        print(f"{APP_NAME} v{VERSION}".center(45))
-        print("=" * 45)
 
-        print("1. Number Converter")
-        print("2. Calculator")
-        print("3. Bitwise Operations")
-        print("4. View History")
-        print("5. Clear History")
-        print("6. Exit")
+        title(f"{APP_NAME} v{VERSION}")
 
-        choice = input("\nChoose: ")
+        console.print("[cyan]1.[/] Number Converter")
+        console.print("[cyan]2.[/] Calculator")
+        console.print("[cyan]3.[/] Bitwise Operations")
+        console.print("[cyan]4.[/] View History")
+        console.print("[cyan]5.[/] Clear History")
+        console.print("[cyan]6.[/] Exit")
+
+        choice = console.input("\n[bold cyan]Choose > [/]").strip()
 
         if choice == "1":
             converter_menu()
@@ -35,25 +35,26 @@ def main():
         elif choice == "2":
             calculator_menu()
             pause()
-            
+
         elif choice == "3":
             bitwise_menu()
             pause()
-    
+
         elif choice == "4":
             show_history()
             pause()
 
         elif choice == "5":
             clear_history()
+            success("History cleared.")
             pause()
 
         elif choice == "6":
-            print("\nGoodbye!")
+            success("Goodbye!")
             break
 
         else:
-            print("\nInvalid choice.")
+            error("Invalid choice.")
             pause()
 
 

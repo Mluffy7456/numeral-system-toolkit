@@ -1,8 +1,10 @@
+from rich.prompt import Prompt
+
 from converter import to_decimal, from_decimal
-from utils import print_result
 from history import add_calculator_record
 from validator import validate_base, validate_number_for_base
 from representations import show_representations
+from rich_utils import console, title, success, error
 
 
 OPERATIONS = {
@@ -16,68 +18,83 @@ OPERATIONS = {
 
 def calculator_menu():
 
-    print("\n========== Calculator ==========\n")
+    title("Calculator")
 
     try:
 
-        base = int(input("Base (2-36): "))
+        base = int(
+            Prompt.ask("Base (2-36)")
+        )
 
         validate_base(base)
 
-        number1 = input("First number: ").strip().upper()
-        number2 = input("Second number: ").strip().upper()
-        
+        number1 = Prompt.ask(
+            "First number"
+        ).strip().upper()
+
+        number2 = Prompt.ask(
+            "Second number"
+        ).strip().upper()
+
         validate_number_for_base(number1, base)
         validate_number_for_base(number2, base)
 
-        operation = input("Operation (+ - * / %): ").strip()
+        operation = Prompt.ask(
+            "Operation (+ - * / %)"
+        ).strip()
 
         if operation not in OPERATIONS:
-            print("\nUnknown operation.")
+            error("Unknown operation.")
             return
 
         decimal1 = to_decimal(number1, base)
         decimal2 = to_decimal(number2, base)
 
         if operation in ("/", "%") and decimal2 == 0:
-            print("\nDivision by zero.")
+            error("Division by zero.")
             return
 
-        result = OPERATIONS[operation](decimal1, decimal2)
-        
-        formatted_result = from_decimal(result, base)
-        
+        result = OPERATIONS[operation](
+            decimal1,
+            decimal2
+        )
+
+        formatted_result = from_decimal(
+            result,
+            base
+        )
+
         add_calculator_record(
-        number1,
-        number2,
-        operation,
-        base,
-        formatted_result,
-        result
+            number1,
+            number2,
+            operation,
+            base,
+            formatted_result,
+            result
         )
 
-        print_result(
-            "Calculation Result",
-            f"""
-        Expression:
+        success("Calculation completed successfully.")
 
-        {number1} {operation} {number2}
+        console.print()
 
-        Base:
-
-        {base}
-
-        Answer:
-
-        {formatted_result}
-
-        Decimal:
-
-        {result}
-        """
+        console.print(
+            f"[bold cyan]Expression[/] : {number1} {operation} {number2}"
         )
-        
+
+        console.print(
+            f"[bold cyan]Base[/]       : {base}"
+        )
+
+        console.print(
+            f"[bold green]Result[/]     : {formatted_result}"
+        )
+
+        console.print(
+            f"[bold yellow]Decimal[/]   : {result}"
+        )
+
         show_representations(result)
 
-    except ValueError:
-        print("\nInvalid input.")
+    except ValueError as e:
+
+        error(str(e))

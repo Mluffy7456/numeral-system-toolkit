@@ -2,6 +2,11 @@ import json
 from pathlib import Path
 from datetime import datetime
 
+from rich.table import Table
+from rich import box
+
+from rich_utils import console, success
+
 HISTORY_FILE = Path("history.json")
 
 
@@ -86,66 +91,16 @@ def add_calculator_record(first_number,
     save_history(history)
 
 
-def show_history():
-
-    history = load_history()
-
-    if not history:
-
-        print("\nHistory is empty.")
-        return
-
-    print("\n========== HISTORY ==========\n")
-
-    for record in history:
-
-        print(f"Time : {record['timestamp']}")
-        print(f"Type : {record['type']}")
-
-        if record["type"] == "converter":
-
-            print(
-                f"{record['number']} "
-                f"(base {record['from_base']}) "
-                f"→ base {record['to_base']}"
-            )
-
-            print(f"Result : {record['result']}")
-            
-        elif record["type"] == "bitwise":
-
-            print(
-                f"{record['first_number']} "
-                f"{record['operation']} "
-                f"{record['second_number']}"
-            )
-
-            print(f"Base : {record['base']}")
-            print(f"Result : {record['result']}")
-
-        else:
-
-            print(
-                f"{record['first_number']} "
-                f"{record['operation']} "
-                f"{record['second_number']}"
-            )
-
-            print(f"Base : {record['base']}")
-            print(f"Result : {record['result']}")
-            print(f"Decimal : {record['decimal_result']}")
-
-        print("-" * 50)
-
 def add_bitwise_record(operation,
                        first_number,
                        second_number,
                        base,
-                       result):
+                       result,
+                       shift=None):
 
     history = load_history()
 
-    history.append({
+    record = {
 
         "type": "bitwise",
 
@@ -161,12 +116,89 @@ def add_bitwise_record(operation,
 
         "result": result
 
-    })
+    }
+
+    if shift is not None:
+        record["shift"] = shift
+
+    history.append(record)
 
     save_history(history)
+
+
+def show_history():
+
+    history = load_history()
+
+    if not history:
+        console.print("[yellow]History is empty.[/]")
+        return
+
+    table = Table(
+        title="History",
+        box=box.ROUNDED,
+        header_style="bold cyan"
+    )
+
+    table.add_column("Time", style="green")
+    table.add_column("Type", style="cyan")
+    table.add_column("Operation")
+    table.add_column("Result", style="yellow")
+
+    for record in history:
+
+        if record["type"] == "converter":
+
+            operation = (
+                f"{record['number']} "
+                f"({record['from_base']}→{record['to_base']})"
+            )
+
+        elif record["type"] == "calculator":
+
+            operation = (
+                f"{record['first_number']} "
+                f"{record['operation']} "
+                f"{record['second_number']}"
+            )
+
+        else:
+
+            operation = (
+                f"{record['operation']} "
+                f"{record['first_number']}"
+            )
+
+            if record.get("second_number") != "-":
+
+                operation += (
+                    f" {record['second_number']}"
+                )
+
+            if "shift" in record:
+
+                operation += (
+                    f" ({record['shift']})"
+                )
+
+        table.add_row(
+
+            record["timestamp"],
+
+            record["type"].capitalize(),
+
+            operation,
+
+            record["result"]
+
+        )
+
+    console.print()
+    console.print(table)
+
 
 def clear_history():
 
     save_history([])
 
-    print("\nHistory cleared.")
+    success("History cleared.")
