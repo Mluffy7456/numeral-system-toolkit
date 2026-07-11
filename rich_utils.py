@@ -1,5 +1,4 @@
 from rich.console import Console
-from rich.table import Table
 from rich.panel import Panel
 from rich import box
 
@@ -23,13 +22,18 @@ def info(message: str):
 
 
 def title(text: str):
+
     console.print(
         Panel.fit(
             text,
-            border_style="bright_blue"
+            border_style="bright_blue",
+            box=box.ROUNDED
         )
     )
 
 
-def pause():
-    input("\nPress Enter to continue...")
+def pause(message: str = "Press Enter to continue..."):
+
+    console.input(
+        f"\n[dim]{message}[/]"
+    )

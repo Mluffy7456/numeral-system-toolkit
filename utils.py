@@ -1,5 +1,7 @@
 import os
 
+from rich_utils import console
+
 
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
@@ -7,7 +9,7 @@ def clear_screen():
 
 def logo():
 
-    print(r"""
+    console.print(r"""
 
      ███╗   ██╗███████╗████████╗
      ████╗  ██║██╔════╝╚══██╔══╝
@@ -17,4 +19,5 @@ def logo():
      ╚═╝  ╚═══╝╚══════╝   ╚═╝
 
  Numeral System Toolkit - by Mluffy
+
 """)

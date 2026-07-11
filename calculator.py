@@ -1,10 +1,20 @@
 from rich.prompt import Prompt
+
 from number_utils import from_decimal
 from converter import to_decimal
+
 from history import add_calculator_record
 from validator import validate_base, validate_number_for_base
 from representations import show_representations
-from rich_utils import console, title, success, error
+
+from rich_utils import (
+    console,
+    title,
+    success,
+    error
+)
+
+from language import t
 
 
 OPERATIONS = {
@@ -18,40 +28,42 @@ OPERATIONS = {
 
 def calculator_menu():
 
-    title("Calculator")
+    title(t("calculator.title"))
 
     try:
 
         base = int(
-            Prompt.ask("Base (2-36)")
+            Prompt.ask(
+                t("calculator.base")
+            )
         )
 
         validate_base(base)
 
         number1 = Prompt.ask(
-            "First number"
+            t("calculator.first_number")
         ).strip().upper()
 
         number2 = Prompt.ask(
-            "Second number"
+            t("calculator.second_number")
         ).strip().upper()
 
         validate_number_for_base(number1, base)
         validate_number_for_base(number2, base)
 
         operation = Prompt.ask(
-            "Operation (+ - * / %)"
+            t("calculator.operation")
         ).strip()
 
         if operation not in OPERATIONS:
-            error("Unknown operation.")
+            error("error.unknown_operation")
             return
 
         decimal1 = to_decimal(number1, base)
         decimal2 = to_decimal(number2, base)
 
         if operation in ("/", "%") and decimal2 == 0:
-            error("Division by zero.")
+            error("error.division_zero")
             return
 
         result = OPERATIONS[operation](
@@ -73,24 +85,24 @@ def calculator_menu():
             result
         )
 
-        success("Calculation completed successfully.")
+        success("calculator.success")
 
         console.print()
 
         console.print(
-            f"[bold cyan]Expression[/] : {number1} {operation} {number2}"
+            f"[bold cyan]{t('calculator.expression')}[/] : {number1} {operation} {number2}"
         )
 
         console.print(
-            f"[bold cyan]Base[/]       : {base}"
+            f"[bold cyan]{t('calculator.base')}[/]       : {base}"
         )
 
         console.print(
-            f"[bold green]Result[/]     : {formatted_result}"
+            f"[bold green]{t('calculator.result')}[/]     : {formatted_result}"
         )
 
         console.print(
-            f"[bold yellow]Decimal[/]   : {result}"
+            f"[bold yellow]{t('calculator.decimal')}[/]   : {result}"
         )
 
         show_representations(result)

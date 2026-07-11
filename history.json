@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "type": "converter",
+        "timestamp": "2026-07-11T03:03:31",
+        "number": "345",
+        "from_base": 10,
+        "to_base": 6,
+        "result": "1333"
+    },
+    {
+        "type": "converter",
+        "timestamp": "2026-07-11T03:04:03",
+        "number": "345",
+        "from_base": 10,
+        "to_base": 6,
+        "result": "1333"
+    }
+]

@@ -1,6 +1,11 @@
 # 🔢 Numeral System Toolkit
 
-A feature-rich Python CLI toolkit for numeral system conversion, arithmetic calculations, bitwise operations, and digital logic.
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Version](https://img.shields.io/badge/version-1.2.0-success)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/status-stable-brightgreen)
+
+A modern Python CLI toolkit for numeral system conversion, arithmetic calculations, bitwise operations, and digital logic.
 
 ---
 
@@ -11,14 +16,14 @@ A feature-rich Python CLI toolkit for numeral system conversion, arithmetic calc
 - Convert numbers between numeral systems
 - Supports bases **2–36**
 - Supports positive and negative numbers
-- Input validation
-- Automatic result representations
+- Automatic validation
+- Automatic number representations
 
 ---
 
 ### 🧮 Calculator
 
-Supported operations:
+Supports arithmetic operations in any numeral system:
 
 - Addition (`+`)
 - Subtraction (`-`)
@@ -26,7 +31,7 @@ Supported operations:
 - Integer Division (`/`)
 - Modulo (`%`)
 
-Works with numeral systems from **2 to 36**.
+Supports numeral systems from **2 to 36**.
 
 ---
 
@@ -56,7 +61,7 @@ Configurable bit width:
 
 ### 📊 Number Representations
 
-After every conversion or calculation, the result is automatically displayed in:
+Results are automatically displayed in:
 
 - Binary
 - Octal
@@ -67,20 +72,33 @@ After every conversion or calculation, the result is automatically displayed in:
 
 ### 📜 History
 
-- JSON-based storage
+- JSON-based history
 - Rich table view
 - View history
 - Clear history
 
 ---
 
-### 🎨 Rich CLI Interface
+### 🌍 Localization
+
+Supported languages:
+
+- 🇺🇸 English
+- 🇷🇺 Русский
+
+Language preference is automatically saved.
+
+---
+
+### 🎨 Rich CLI
+
+Powered by **Rich** for:
 
 - Colored output
-- Rich tables
+- Tables
 - Panels
-- Better error messages
-- Improved readability
+- Better readability
+- Improved user experience
 
 ---
 
@@ -88,31 +106,43 @@ After every conversion or calculation, the result is automatically displayed in:
 
 - Base validation
 - Number validation
-- Invalid character detection
+- Invalid symbol detection
 - User-friendly error messages
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```text
 NumeralSystemToolkit/
 
+├── locales/
+│   ├── en.json
+│   └── ru.json
+│
 ├── main.py
 ├── converter.py
 ├── calculator.py
 ├── bitwise.py
 ├── history.py
 ├── representations.py
+├── language.py
+├── settings.py
 ├── rich_utils.py
 ├── validator.py
+├── number_utils.py
 ├── utils.py
 ├── config.py
 │
+├── settings.json
 ├── history.json
 ├── requirements.txt
 ├── README.md
-└── LICENSE
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── LICENSE
+└── .gitignore
 ```
 
 ---
@@ -125,7 +155,7 @@ Clone the repository
 git clone https://github.com/Mluffy7456/numeral-system-toolkit.git
 ```
 
-Open the project
+Enter the project directory
 
 ```bash
 cd numeral-system-toolkit
@@ -153,6 +183,16 @@ python main.py
 
 ---
 
+# 📦 Releases
+
+| Version | Status |
+|---------|--------|
+| **v1.2.0** | ✅ Stable |
+| **v1.1.0** | ✅ Stable |
+| **v1.0.0** | ✅ Stable |
+
+---
+
 # 📅 Roadmap
 
 ## ✅ v1.0.0
@@ -177,15 +217,20 @@ python main.py
 
 ---
 
-## 🚀 v1.2.0
+## ✅ v1.2.0
 
-- English / Russian localization
+- English localization
+- Russian localization
 - Language switching
-- JSON-based localization system
+- Settings system
+- JSON localization files
+- Improved project architecture
 
 ---
 
 ## 🚀 v1.3.0
+
+Planned features:
 
 - Truth Tables
 - Bit Representation
@@ -194,6 +239,8 @@ python main.py
 ---
 
 ## 🔮 v2.0.0
+
+Future plans:
 
 - IEEE 754 Converter
 - ASCII Converter
@@ -206,9 +253,15 @@ python main.py
 
 # 🤝 Contributing
 
-Contributions, bug reports, feature requests, and suggestions are welcome.
+Contributions, feature requests, bug reports, and pull requests are welcome.
 
-Feel free to fork the repository and submit a pull request.
+Please read **CONTRIBUTING.md** before submitting changes.
+
+---
+
+# 🔒 Security
+
+If you discover a security issue, please read **SECURITY.md**.
 
 ---
 

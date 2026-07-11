@@ -6,10 +6,26 @@ from history import show_history, clear_history
 from config import APP_NAME, VERSION
 
 from utils import clear_screen, logo
-from rich_utils import console, title, pause, error, success
+
+from rich_utils import (
+    console,
+    title,
+    pause,
+    error,
+    success
+)
+
+from language import (
+    load_language,
+    t
+)
+
+from settings_menu import settings_menu
 
 
 def main():
+
+    load_language()
 
     while True:
 
@@ -19,42 +35,58 @@ def main():
 
         title(f"{APP_NAME} v{VERSION}")
 
-        console.print("[cyan]1.[/] Number Converter")
-        console.print("[cyan]2.[/] Calculator")
-        console.print("[cyan]3.[/] Bitwise Operations")
-        console.print("[cyan]4.[/] View History")
-        console.print("[cyan]5.[/] Clear History")
-        console.print("[cyan]6.[/] Exit")
+        console.print(f"[cyan]1.[/] {t('menu.converter')}")
+        console.print(f"[cyan]2.[/] {t('menu.calculator')}")
+        console.print(f"[cyan]3.[/] {t('menu.bitwise')}")
+        console.print(f"[cyan]4.[/] {t('menu.history')}")
+        console.print(f"[cyan]5.[/] {t('menu.clear_history')}")
+        console.print(f"[cyan]6.[/] {t('menu.settings')}")
+        console.print(f"[cyan]7.[/] {t('menu.exit')}")
 
-        choice = console.input("\n[bold cyan]Choose > [/]").strip()
+        choice = console.input(
+            f"\n[bold cyan]{t('choose')} > [/]"
+        ).strip()
 
         if choice == "1":
+
             converter_menu()
             pause()
 
         elif choice == "2":
+
             calculator_menu()
             pause()
 
         elif choice == "3":
+
             bitwise_menu()
             pause()
 
         elif choice == "4":
+
             show_history()
             pause()
 
         elif choice == "5":
+
             clear_history()
-            success("History cleared.")
+            success(t("history.cleared"))
             pause()
 
         elif choice == "6":
-            success("Goodbye!")
+
+            settings_menu()
+
+            load_language()
+
+        elif choice == "7":
+
+            success(t("goodbye"))
             break
 
         else:
-            error("Invalid choice.")
+
+            error(t("error.invalid_choice"))
             pause()
 
 

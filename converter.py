@@ -2,42 +2,23 @@ from rich.prompt import Prompt
 
 from rich_utils import console, title, success, error
 
+from language import t
+
 from history import add_converter_record
 from validator import validate_base, validate_number_for_base
 from representations import show_representations
 from number_utils import from_decimal
-
-DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def to_decimal(number: str, base: int) -> int:
     return int(number, base)
 
 
-def from_decimal(number: int, base: int) -> str:
-
-    if number == 0:
-        return "0"
-
-    negative = number < 0
-    number = abs(number)
-
-    result = ""
-
-    while number:
-
-        number, remainder = divmod(number, base)
-        result = DIGITS[remainder] + result
-
-    if negative:
-        result = "-" + result
-
-    return result
-
-
-def convert_number(number: str,
-                   from_base: int,
-                   to_base: int) -> str:
+def convert_number(
+    number: str,
+    from_base: int,
+    to_base: int
+) -> str:
 
     decimal = to_decimal(number, from_base)
 
@@ -46,18 +27,24 @@ def convert_number(number: str,
 
 def converter_menu():
 
-    title("Number Converter")
+    title(t("converter.title"))
 
     try:
 
-        number = Prompt.ask("Number").strip().upper()
+        number = Prompt.ask(
+            t("converter.number")
+        ).strip().upper()
 
         from_base = int(
-            Prompt.ask("From base (2-36)")
+            Prompt.ask(
+                t("converter.from_base")
+            )
         )
 
         to_base = int(
-            Prompt.ask("To base (2-36)")
+            Prompt.ask(
+                t("converter.to_base")
+            )
         )
 
         validate_base(from_base)
@@ -81,24 +68,24 @@ def converter_menu():
             result
         )
 
-        success("Conversion completed successfully.")
+        success("converter.success")
 
         console.print()
 
         console.print(
-            f"[bold cyan]Number[/]     : {number}"
+            f"[bold cyan]{t('converter.number')}[/]      : {number}"
         )
 
         console.print(
-            f"[bold cyan]From Base[/]  : {from_base}"
+            f"[bold cyan]{t('converter.from_base')}[/]   : {from_base}"
         )
 
         console.print(
-            f"[bold cyan]To Base[/]    : {to_base}"
+            f"[bold cyan]{t('converter.to_base')}[/]     : {to_base}"
         )
 
         console.print(
-            f"[bold green]Result[/]     : {result}"
+            f"[bold green]{t('converter.result')}[/]      : {result}"
         )
 
         show_representations(

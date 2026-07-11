@@ -6,8 +6,11 @@ from rich.table import Table
 from rich import box
 
 from rich_utils import console, success
+from language import t
 
-HISTORY_FILE = Path("history.json")
+
+BASE_DIR = Path(__file__).resolve().parent
+HISTORY_FILE = BASE_DIR / "history.json"
 
 
 def load_history():
@@ -59,12 +62,14 @@ def add_converter_record(number, from_base, to_base, result):
     save_history(history)
 
 
-def add_calculator_record(first_number,
-                          second_number,
-                          operation,
-                          base,
-                          result,
-                          decimal_result):
+def add_calculator_record(
+    first_number,
+    second_number,
+    operation,
+    base,
+    result,
+    decimal_result
+):
 
     history = load_history()
 
@@ -91,12 +96,14 @@ def add_calculator_record(first_number,
     save_history(history)
 
 
-def add_bitwise_record(operation,
-                       first_number,
-                       second_number,
-                       base,
-                       result,
-                       shift=None):
+def add_bitwise_record(
+    operation,
+    first_number,
+    second_number,
+    base,
+    result,
+    shift=None
+):
 
     history = load_history()
 
@@ -131,19 +138,36 @@ def show_history():
     history = load_history()
 
     if not history:
-        console.print("[yellow]History is empty.[/]")
+
+        console.print(
+            f"[yellow]{t('history.empty')}[/]"
+        )
         return
 
     table = Table(
-        title="History",
+        title=t("history.title"),
         box=box.ROUNDED,
         header_style="bold cyan"
     )
 
-    table.add_column("Time", style="green")
-    table.add_column("Type", style="cyan")
-    table.add_column("Operation")
-    table.add_column("Result", style="yellow")
+    table.add_column(
+        t("history.time"),
+        style="green"
+    )
+
+    table.add_column(
+        t("history.type"),
+        style="cyan"
+    )
+
+    table.add_column(
+        t("history.operation")
+    )
+
+    table.add_column(
+        t("history.result"),
+        style="yellow"
+    )
 
     for record in history:
 
@@ -151,7 +175,7 @@ def show_history():
 
             operation = (
                 f"{record['number']} "
-                f"({record['from_base']}→{record['to_base']})"
+                f"({record['from_base']} → {record['to_base']})"
             )
 
         elif record["type"] == "calculator":
@@ -201,4 +225,4 @@ def clear_history():
 
     save_history([])
 
-    success("History cleared.")
+    success("history.cleared")

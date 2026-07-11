@@ -1,10 +1,20 @@
 from rich.prompt import Prompt
+
 from number_utils import from_decimal
 from converter import to_decimal
+
 from validator import validate_base, validate_number_for_base
 from history import add_bitwise_record
 from representations import show_representations
-from rich_utils import console, title, success, error
+
+from rich_utils import (
+    console,
+    title,
+    success,
+    error
+)
+
+from language import t
 
 
 BIT_WIDTHS = {
@@ -84,29 +94,39 @@ OPERATIONS = {
     "10": ("ROTATE RIGHT", rotate_right),
 }
 
+
 def bitwise_menu():
 
-    title("Bitwise Operations")
+    title(t("bitwise.title"))
 
     try:
 
         base = int(
-            Prompt.ask("Base (2-36)")
+            Prompt.ask(
+                t("bitwise.base")
+            )
         )
 
         validate_base(base)
 
         console.print()
-        console.print("[bold cyan]Bit Width[/]")
+
+        console.print(
+            f"[bold cyan]{t('bitwise.bit_width')}[/]"
+        )
+
         console.print("[cyan]1.[/] 8-bit")
         console.print("[cyan]2.[/] 16-bit")
         console.print("[cyan]3.[/] 32-bit")
         console.print("[cyan]4.[/] 64-bit")
 
-        width_choice = Prompt.ask("Choose")
+        width_choice = Prompt.ask(
+            t("choose")
+        )
 
         if width_choice not in BIT_WIDTHS:
-            error("Invalid bit width.")
+
+            error("error.invalid_bit_width")
             return
 
         bit_width = BIT_WIDTHS[width_choice]
@@ -115,13 +135,20 @@ def bitwise_menu():
         console.print()
 
         number1 = Prompt.ask(
-            "First number"
+            t("bitwise.first_number")
         ).strip().upper()
 
-        validate_number_for_base(number1, base)
+        validate_number_for_base(
+            number1,
+            base
+        )
 
         console.print()
-        console.print("[bold cyan]Operations[/]")
+
+        console.print(
+            f"[bold cyan]{t('bitwise.operations')}[/]"
+        )
+
         console.print("[cyan]1.[/] AND")
         console.print("[cyan]2.[/] OR")
         console.print("[cyan]3.[/] XOR")
@@ -133,15 +160,23 @@ def bitwise_menu():
         console.print("[cyan]9.[/] ROTATE LEFT")
         console.print("[cyan]10.[/] ROTATE RIGHT")
 
-        operation_choice = Prompt.ask("Choose")
+        operation_choice = Prompt.ask(
+            t("choose")
+        )
 
         if operation_choice not in OPERATIONS:
-            error("Unknown operation.")
+
+            error("error.unknown_operation")
             return
 
-        operation_name, operation = OPERATIONS[operation_choice]
+        operation_name, operation = OPERATIONS[
+            operation_choice
+        ]
 
-        decimal1 = to_decimal(number1, base)
+        decimal1 = to_decimal(
+            number1,
+            base
+        )
 
         decimal2 = 0
         number2 = "-"
@@ -157,7 +192,7 @@ def bitwise_menu():
         ):
 
             number2 = Prompt.ask(
-                "Second number"
+                t("bitwise.second_number")
             ).strip().upper()
 
             validate_number_for_base(
@@ -178,7 +213,9 @@ def bitwise_menu():
         ):
 
             shift = int(
-                Prompt.ask("Shift amount")
+                Prompt.ask(
+                    t("bitwise.shift")
+                )
             )
 
         if operation_choice == "6":
@@ -241,19 +278,24 @@ def bitwise_menu():
             number2,
             base,
             formatted_result,
-            shift if operation_choice in ("7", "8", "9", "10") else None
+            shift if operation_choice in (
+                "7",
+                "8",
+                "9",
+                "10"
+            ) else None
         )
 
-        success("Operation completed successfully.")
+        success("bitwise.success")
 
         console.print()
 
         console.print(
-            f"[bold cyan]Operation[/] : {operation_name}"
+            f"[bold cyan]{t('bitwise.operation')}[/] : {operation_name}"
         )
 
         console.print(
-            f"[bold cyan]Bit Width[/] : {bit_width}"
+            f"[bold cyan]{t('bitwise.bit_width')}[/] : {bit_width}"
         )
 
         if operation_choice in (
@@ -264,13 +306,14 @@ def bitwise_menu():
         ):
 
             console.print(
-                f"[bold cyan]Shift[/]     : {shift}"
+                f"[bold cyan]{t('bitwise.shift')}[/] : {shift}"
             )
 
         if operation_choice == "6":
 
             console.print(
-                f"[bold cyan]Expression[/] : {operation_name} {number1}"
+                f"[bold cyan]{t('bitwise.expression')}[/] : "
+                f"{operation_name} {number1}"
             )
 
         elif operation_choice in (
@@ -281,17 +324,20 @@ def bitwise_menu():
         ):
 
             console.print(
-                f"[bold cyan]Expression[/] : {number1} ({shift})"
+                f"[bold cyan]{t('bitwise.expression')}[/] : "
+                f"{number1} ({shift})"
             )
 
         else:
 
             console.print(
-                f"[bold cyan]Expression[/] : {number1} {operation_name} {number2}"
+                f"[bold cyan]{t('bitwise.expression')}[/] : "
+                f"{number1} {operation_name} {number2}"
             )
 
         console.print(
-            f"[bold green]Result[/]    : {formatted_result}"
+            f"[bold green]{t('bitwise.result')}[/] : "
+            f"{formatted_result}"
         )
 
         show_representations(
