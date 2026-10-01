@@ -1,17 +1,26 @@
 # Changelog
 
-## [1.3.0] - 2026-10-01
+## [2.0.0] - 2026-10-01
 
 ### Added
-- Truth table generator for AND, OR, XOR, NAND, NOR, XNOR.
-- Bit representation view with configurable width from 1 to 1024 bits.
-- Configurable binary bit grouping.
+- IEEE 754 binary32 and binary64 converter.
+- ASCII encoder/decoder.
+- UTF-8 hexadecimal encoder/decoder.
+- Two's complement encoder/decoder.
+- Gray Code encoder/decoder.
+- Tkinter GUI with base conversion and encoding tools.
+- v2.0 unit tests.
+- CLI integration for all v2 features.
 
 ### Changed
-- Main CLI menu now exposes the v1.3 feature set.
-- Application version bumped to 1.3.0.
-- English and Russian locale files extended for the new features.
-- Representation output handles fixed-width bitwise results consistently.
+- Main menu expanded with the v2 feature set.
+- Localizations updated for all new screens and errors.
+- Project version bumped to 2.0.0.
+
+## [1.3.0] - 2026-10-01
+- Truth Tables
+- Bit Representation
+- Bit Grouping
 
 ## [1.2.0] - 2026-07
 - English/Russian localization
