@@ -1,247 +1,85 @@
 # 🔢 Numeral System Toolkit
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Version](https://img.shields.io/badge/version-1.2.0-success)
+![Version](https://img.shields.io/badge/version-1.3.0-success)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-stable-brightgreen)
 
-A modern Python CLI toolkit for numeral system conversion, arithmetic calculations, bitwise operations, and digital logic.
-
----
+A modular Python CLI toolkit for numeral-system conversion, arithmetic, bitwise operations, digital logic, and low-level bit inspection.
 
 ## ✨ Features
 
 ### 🔄 Number Converter
-
-- Convert numbers between numeral systems
-- Supports bases **2–36**
-- Supports positive and negative numbers
-- Automatic validation
-- Automatic number representations
-
----
+Convert signed integers between bases **2–36** with validation and automatic Binary/Octal/Decimal/Hexadecimal representations.
 
 ### 🧮 Calculator
-
-Supports arithmetic operations in any numeral system:
-
-- Addition (`+`)
-- Subtraction (`-`)
-- Multiplication (`*`)
-- Integer Division (`/`)
-- Modulo (`%`)
-
-Supports numeral systems from **2 to 36**.
-
----
+Perform arithmetic in bases **2–36**: `+`, `-`, `*`, integer `/`, `%`.
 
 ### ⚙️ Bitwise Operations
-
-Supported operations:
-
-- AND
-- OR
-- XOR
-- NAND
-- NOR
-- NOT
-- Shift Left (`<<`)
-- Shift Right (`>>`)
-- Rotate Left (`ROTL`)
-- Rotate Right (`ROTR`)
-
-Configurable bit width:
-
-- 8-bit
-- 16-bit
-- 32-bit
-- 64-bit
-
----
+AND, OR, XOR, NAND, NOR, NOT, shift left/right, rotate left/right with **8/16/32/64-bit** widths.
 
 ### 📊 Number Representations
+Display results in Binary, Octal, Decimal, and Hexadecimal. Binary output can be grouped for readability.
 
-Results are automatically displayed in:
-
-- Binary
-- Octal
-- Decimal
-- Hexadecimal
-
----
+### 🧠 v1.3 Features
+- Truth tables for AND, OR, XOR, NAND, NOR, XNOR
+- Bit-by-bit representation with configurable width
+- Configurable binary bit grouping
 
 ### 📜 History
-
-- JSON-based history
-- Rich table view
-- View history
-- Clear history
-
----
+JSON-based operation history with a Rich table view and clear-history action.
 
 ### 🌍 Localization
+English and Russian UI with persistent language settings.
 
-Supported languages:
+## 🚀 Installation
 
-- 🇺🇸 English
-- 🇷🇺 Русский
+```bash
+git clone https://github.com/Mluffy7456/numeral-system-toolkit.git
+cd numeral-system-toolkit
+pip install -r requirements.txt
+python main.py
+```
 
-Language preference is automatically saved.
-
----
-
-### 🎨 Rich CLI
-
-Powered by **Rich** for:
-
-- Colored output
-- Tables
-- Panels
-- Better readability
-- Improved user experience
-
----
-
-### ✅ Validation
-
-- Base validation
-- Number validation
-- Invalid symbol detection
-- User-friendly error messages
-
----
-
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
-NumeralSystemToolkit/
-
-├── locales/
-│   ├── en.json
-│   └── ru.json
-│
 ├── main.py
 ├── converter.py
 ├── calculator.py
 ├── bitwise.py
-├── history.py
+├── truth_tables.py
+├── bit_representation.py
+├── bit_grouping.py
 ├── representations.py
-├── language.py
-├── settings.py
-├── rich_utils.py
+├── history.py
 ├── validator.py
 ├── number_utils.py
+├── language.py
+├── settings.py
+├── settings_menu.py
+├── rich_utils.py
 ├── utils.py
 ├── config.py
-│
-├── settings.json
-├── history.json
-├── requirements.txt
-├── README.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── SECURITY.md
-├── LICENSE
-└── .gitignore
+└── locales/
+    ├── en.json
+    └── ru.json
 ```
 
----
+## 📅 Roadmap
 
-# 🚀 Installation
+### ✅ v1.0.0
+Number Converter · Calculator · Bitwise Operations · JSON History · Validation · Modular architecture
 
-Clone the repository
+### ✅ v1.1.0
+Rich CLI · Number representations · Shift and rotate operations
 
-```bash
-git clone https://github.com/Mluffy7456/numeral-system-toolkit.git
-```
+### ✅ v1.2.0
+English/Russian localization · Settings and language persistence
 
-Enter the project directory
+### ✅ v1.3.0
+Truth Tables · Bit Representation · Bit Grouping
 
-```bash
-cd numeral-system-toolkit
-```
-
-Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the application
-
-```bash
-python main.py
-```
-
----
-
-# 🛠 Technologies
-
-- Python 3
-- Rich
-- JSON
-
----
-
-# 📦 Releases
-
-| Version | Status |
-|---------|--------|
-| **v1.2.0** | ✅ Stable |
-| **v1.1.0** | ✅ Stable |
-| **v1.0.0** | ✅ Stable |
-
----
-
-# 📅 Roadmap
-
-## ✅ v1.0.0
-
-- Number Converter
-- Calculator
-- Bitwise Operations
-- JSON History
-- Validation
-- Modular Architecture
-
----
-
-## ✅ v1.1.0
-
-- Rich CLI Interface
-- Number Representations
-- Shift Left (`<<`)
-- Shift Right (`>>`)
-- Rotate Left (`ROTL`)
-- Rotate Right (`ROTR`)
-
----
-
-## ✅ v1.2.0
-
-- English localization
-- Russian localization
-- Language switching
-- Settings system
-- JSON localization files
-- Improved project architecture
-
----
-
-## 🚀 v1.3.0
-
-Planned features:
-
-- Truth Tables
-- Bit Representation
-- Bit Grouping
-
----
-
-## 🔮 v2.0.0
-
-Future plans:
-
+### 🔮 v2.0.0
 - IEEE 754 Converter
 - ASCII Converter
 - UTF-8 Converter
@@ -249,22 +87,8 @@ Future plans:
 - Gray Code
 - GUI Version
 
----
+## 🛠 Technologies
+Python 3 · Rich · JSON
 
-# 🤝 Contributing
-
-Contributions, feature requests, bug reports, and pull requests are welcome.
-
-Please read **CONTRIBUTING.md** before submitting changes.
-
----
-
-# 🔒 Security
-
-If you discover a security issue, please read **SECURITY.md**.
-
----
-
-# 📄 License
-
-This project is licensed under the **MIT License**.
+## 📄 License
+MIT
