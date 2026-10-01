@@ -1,35 +1,27 @@
 # 🔢 Numeral System Toolkit
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Version](https://img.shields.io/badge/version-1.3.0-success)
+![Version](https://img.shields.io/badge/version-2.0.0-success)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A modular Python CLI toolkit for numeral-system conversion, arithmetic, bitwise operations, digital logic, and low-level bit inspection.
+A modular Python toolkit for numeral-system conversion, arithmetic, bitwise operations, digital logic, binary encodings, and low-level data representation.
 
 ## ✨ Features
 
-### 🔄 Number Converter
-Convert signed integers between bases **2–36** with validation and automatic Binary/Octal/Decimal/Hexadecimal representations.
-
-### 🧮 Calculator
-Perform arithmetic in bases **2–36**: `+`, `-`, `*`, integer `/`, `%`.
-
-### ⚙️ Bitwise Operations
-AND, OR, XOR, NAND, NOR, NOT, shift left/right, rotate left/right with **8/16/32/64-bit** widths.
-
-### 📊 Number Representations
-Display results in Binary, Octal, Decimal, and Hexadecimal. Binary output can be grouped for readability.
-
-### 🧠 v1.3 Features
-- Truth tables for AND, OR, XOR, NAND, NOR, XNOR
-- Bit-by-bit representation with configurable width
-- Configurable binary bit grouping
-
-### 📜 History
-JSON-based operation history with a Rich table view and clear-history action.
-
-### 🌍 Localization
-English and Russian UI with persistent language settings.
+- 🔄 Number conversion between bases **2–36**
+- 🧮 Arithmetic calculator in arbitrary bases
+- ⚙️ Bitwise operations with configurable 8/16/32/64-bit width
+- 📊 Binary/Octal/Decimal/Hexadecimal representations
+- 🧠 Truth tables: AND, OR, XOR, NAND, NOR, XNOR
+- 🔬 Configurable bit representation and bit grouping
+- IEEE 754 binary32/binary64 converter
+- ASCII encoder/decoder
+- UTF-8 hexadecimal encoder/decoder
+- Two's complement encoder/decoder
+- Gray Code encoder/decoder
+- 📜 Persistent JSON history
+- 🌍 English/Russian localization
+- 🖥️ Optional Tkinter GUI
 
 ## 🚀 Installation
 
@@ -40,16 +32,54 @@ pip install -r requirements.txt
 python main.py
 ```
 
+For the GUI, run:
+
+```bash
+python gui.py
+```
+
+> Tkinter is part of the standard Python distribution on most desktop installations. On Linux, install your distribution's Tk package if it is missing.
+
+## 📦 v2.0.0
+
+### IEEE 754
+Supports:
+- binary32 / float32
+- binary64 / float64
+- decimal float → sign/exponent/fraction/binary/hex
+- binary or hexadecimal IEEE 754 → Python float
+
+### ASCII
+Bidirectional conversion between ASCII text and decimal character codes.
+
+### UTF-8
+Bidirectional conversion between Unicode text and UTF-8 byte sequences represented as hexadecimal.
+
+### Two's Complement
+Encode signed integers into a selected bit width and decode binary two's-complement values.
+
+### Gray Code
+Encode non-negative integers into Gray code and decode Gray code back to integers.
+
+### GUI
+A lightweight Tkinter interface provides a base converter and common encoding tools without adding a GUI dependency.
+
 ## 📂 Project Structure
 
 ```text
 ├── main.py
+├── gui.py
 ├── converter.py
 ├── calculator.py
 ├── bitwise.py
 ├── truth_tables.py
 ├── bit_representation.py
 ├── bit_grouping.py
+├── ieee754.py
+├── ascii_converter.py
+├── utf8_converter.py
+├── twos_complement.py
+├── gray_code.py
 ├── representations.py
 ├── history.py
 ├── validator.py
@@ -60,6 +90,7 @@ python main.py
 ├── rich_utils.py
 ├── utils.py
 ├── config.py
+├── tests/
 └── locales/
     ├── en.json
     └── ru.json
@@ -68,27 +99,32 @@ python main.py
 ## 📅 Roadmap
 
 ### ✅ v1.0.0
-Number Converter · Calculator · Bitwise Operations · JSON History · Validation · Modular architecture
+Core converter, calculator, bitwise operations, history, validation.
 
 ### ✅ v1.1.0
-Rich CLI · Number representations · Shift and rotate operations
+Rich CLI, number representations, shifts and rotations.
 
 ### ✅ v1.2.0
-English/Russian localization · Settings and language persistence
+English/Russian localization and settings.
 
 ### ✅ v1.3.0
-Truth Tables · Bit Representation · Bit Grouping
+Truth Tables, Bit Representation, Bit Grouping.
 
-### 🔮 v2.0.0
-- IEEE 754 Converter
-- ASCII Converter
-- UTF-8 Converter
-- Two's Complement
-- Gray Code
-- GUI Version
+### ✅ v2.0.0
+IEEE 754, ASCII, UTF-8, Two's Complement, Gray Code, GUI Version.
+
+## 🧪 Tests
+
+Run:
+
+```bash
+python -m unittest discover -s tests -v
+```
 
 ## 🛠 Technologies
-Python 3 · Rich · JSON
+
+Python 3 · Rich · Tkinter · JSON · unittest
 
 ## 📄 License
+
 MIT
