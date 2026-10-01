@@ -221,8 +221,19 @@ def show_history():
     console.print(table)
 
 
+def add_special_record(record_type, data):
+
+    history = load_history()
+    history.append({
+        "type": record_type,
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        **data
+    })
+    save_history(history)
+
+
 def clear_history():
 
     save_history([])
 
-    success("history.cleared")
+    success(t("history.cleared"))
