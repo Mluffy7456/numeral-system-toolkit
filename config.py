@@ -1,3 +1,3 @@
 APP_NAME = "Numeral System Toolkit"
-VERSION = "1.3.0"
+VERSION = "2.0.0"
 LINE = "=" * 50
