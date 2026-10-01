@@ -1,70 +1,31 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on Keep a Changelog.
-
----
-
-## [1.2.0] - 2026-07
+## [1.3.0] - 2026-10-01
 
 ### Added
-
-- English localization
-- Russian localization
-- Localization system (`language.py`)
-- Settings system (`settings.py`)
-- Language persistence (`settings.json`)
-- Translation files (`locales/en.json`, `locales/ru.json`)
+- Truth table generator for AND, OR, XOR, NAND, NOR, XNOR.
+- Bit representation view with configurable width from 1 to 1024 bits.
+- Configurable binary bit grouping.
 
 ### Changed
+- Main CLI menu now exposes the v1.3 feature set.
+- Application version bumped to 1.3.0.
+- English and Russian locale files extended for the new features.
+- Representation output handles fixed-width bitwise results consistently.
 
-- Localized entire CLI interface
-- Localized menus
-- Localized prompts
-- Localized validation messages
-- Localized history table
-- Localized number representations
-- Improved project structure
-
-### Improved
-
-- More reliable path handling using `Path(__file__).resolve().parent`
-- Cleaner localization architecture
-- Better maintainability
-
----
+## [1.2.0] - 2026-07
+- English/Russian localization
+- Settings system
+- Persistent language selection
 
 ## [1.1.0] - 2026-07
-
-### Added
-
 - Rich CLI interface
-- Colored terminal output
-- Rich tables
 - Number representations
-- Shift Left (`<<`)
-- Shift Right (`>>`)
-- Rotate Left (`ROTL`)
-- Rotate Right (`ROTR`)
-
-### Improved
-
-- History view
-- Error handling
-- Result formatting
-
----
+- Shift and rotate operations
 
 ## [1.0.0] - 2026-07
-
-### Initial Release
-
-Features:
-
 - Number Converter
 - Calculator
 - Bitwise Operations
 - JSON History
 - Validation
-- Modular architecture
